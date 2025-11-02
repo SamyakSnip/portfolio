@@ -1,6 +1,8 @@
 import ThreeCanvas from "@/components/ThreeCanvas";
 import ParticleField from "@/components/ParticleField";
 import TerminalHeader from "@/components/TerminalHeader";
+import TerminalNav, { CommandPrompt } from "@/components/TerminalNav";
+import TerminalOverlay, { TerminalSection, TerminalDivider } from "@/components/TerminalOverlay";
 
 export default function Home() {
   return (
@@ -8,13 +10,27 @@ export default function Home() {
       <ThreeCanvas>
         <ParticleField count={500} />
       </ThreeCanvas>
-      <div className="content-wrapper">
-        <div className="min-h-screen flex items-center justify-center p-4">
-          <div className="glass p-8 max-w-2xl w-full terminal-border">
-            <TerminalHeader />
-          </div>
-        </div>
-      </div>
+      
+      <TerminalOverlay>
+        <TerminalSection>
+          <TerminalHeader />
+        </TerminalSection>
+
+        <TerminalDivider />
+
+        <TerminalSection>
+          <CommandPrompt />
+          <TerminalNav activeSection="#home" />
+        </TerminalSection>
+
+        <TerminalDivider />
+
+        <TerminalSection>
+          <p className="text-white/80 font-mono text-sm md:text-base">
+            Welcome to my interactive portfolio. Navigate using the buttons above.
+          </p>
+        </TerminalSection>
+      </TerminalOverlay>
     </main>
   );
 }
